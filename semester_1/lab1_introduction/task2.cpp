@@ -2,11 +2,11 @@
 using namespace std;
 
 int main() {
-    double b;
+    double a;
     double d = 0, e = 1;
-    cout << "введите b ";
-    cin >> b ;
-    for (int k = 1; k <= b; k++ ) {
+    cout << "введите n ";
+    cin >> a ;
+    for (int k = 1; k <= a; k++ ) {
         if (k % 2 == 0) {
             d = d + k;
         }
@@ -14,7 +14,7 @@ int main() {
             e = e * k;
         }
     }
-    cout << "сумма" << d << endl;
-    cout << "произведение"<< e ;
+    cout << "сумма " << d << endl;
+    cout << "произведение "<< e ;
     return 0;
 }
