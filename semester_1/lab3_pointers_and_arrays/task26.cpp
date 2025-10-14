@@ -5,22 +5,32 @@
 
 const int max1 = 100;
 
-int main() {
-    double arr[max1];
-    int n;
-    int choice;
+void imputingwithcheck(int& n) {
 
-    std::cout << "введите количество элементов менее " << max1 << ": ";
+    setlocale(LC_ALL, "Russian");
+
+    std::cout << "введите количество элементов менее " << max1 << "): ";
     std::cin >> n;
 
     if (n <= 0 || n > max1) {
         std::cout << "ошибка размера" << std::endl;
-        return 1;
+        std::exit(1);
     }
+}
+
+int main() {
+        
+    setlocale(LC_ALL, "Russian");
+
+    double arr[max1];
+    int n;
+    int choice;
+
+    imputingwithcheck(n);
 
     std::cout << "выберите способ заполнения:" << std::endl;
-    std::cout << "1 - ввод с клавиатуры" << std::endl;
-    std::cout << "2 - случайное заполнение" << std::endl;
+    std::cout << "1 - ввод с клавиатуры " << std::endl;
+    std::cout << "2 - случайное заполнение " << std::endl;
     std::cin >> choice;
 
     if (choice == 1) {
@@ -55,7 +65,7 @@ int main() {
 
     int maxindex = 0;
     int minindex = 0;
-    
+
     for (int i = 1; i < n; i++) {
         if (arr[i] > arr[maxindex]) {
             maxindex = i;
@@ -87,7 +97,7 @@ int main() {
     if (N > 0 && N <= n) {
         double temp[max1];
         int indices[max1];
-        
+
         for (int i = 0; i < n; i++) {
             temp[i] = arr[i];
             indices[i] = i;
@@ -102,7 +112,7 @@ int main() {
             }
         }
 
-        bool to_remove[max1] = {false};
+        bool to_remove[max1] = { false };
         for (int i = 0; i < N; i++) {
             to_remove[indices[i]] = true;
         }
@@ -122,7 +132,7 @@ int main() {
             std::cout << arr[i] << " ";
         }
         std::cout << std::endl;
- 
+
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
                 if (std::fabs(arr[j]) > std::fabs(arr[j + 1])) {
