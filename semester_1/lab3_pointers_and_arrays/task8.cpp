@@ -5,22 +5,32 @@
 
 const int max1 = 100;
 
-int main() {
-    double arr[max1];
-    int n;
-    int choice;
+void imputingwithcheck(int& n) {
+
+    setlocale(LC_ALL, "Russian");
 
     std::cout << "введите количество элементов менее " << max1 << "): ";
     std::cin >> n;
 
     if (n <= 0 || n > max1) {
         std::cout << "ошибка размера" << std::endl;
-        return 1;
+        std::exit(1);
     }
+}
+
+int main() {
+
+    setlocale(LC_ALL, "Russian");
+
+    double arr[max1];
+    int n;
+    int choice;
+
+    imputingwithcheck(n);
 
     std::cout << "выберите способ заполнения:";
-    std::cout << "1 - ввод с клавиатуры";
-    std::cout << "2 - случайное заполнение";
+    std::cout << "1 - ввод с клавиатуры ";
+    std::cout << "2 - случайное заполнение ";
     std::cin >> choice;
 
     if (choice == 1) {
