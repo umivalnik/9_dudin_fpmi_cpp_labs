@@ -103,11 +103,13 @@ void InputVariant(int** matrices, int n, int m) {
     }
 }
 
-void bubble_sort(int* array, int m, bool (*comparison)(int a, int b)) {
-    for (int i = 0; i < m - 1; i++) {
-        for (int j = 0; j < m - i - 1; j++) {
-            if (comparison(array[j], array[j + 1])) {
-                std::swap(array[j], array[j + 1]);
+void bubble_sort(int** matrix, int m, int n) {
+    for (int k = 0; k < m; k++) {
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (matrix[k][j] > matrix[k][j + 1]) {
+                    std::swap(matrix[k][j], matrix[k][j + 1]);
+                }
             }
         }
     }
