@@ -83,16 +83,8 @@ int main() {
     }
 
     double umn = 1.0;
-    int start = std::min(maxindex, minindex);
-    int end = std::max(maxindex, minindex);
-    bool elements_between = false;
-
-    for (int i = start + 1; i < end; i++) {
+    for (int i = minindex + 1; i < maxindex; i++) {
         umn *= arr[i];
-        elements_between = true;
-    }
-    if (!elements_between) {
-        umn = 0.0;
     }
 
     for (int i = 0; i < n; i += 2) {
