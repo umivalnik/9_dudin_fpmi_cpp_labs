@@ -76,7 +76,7 @@ int main() {
     }
 
     double umn = 1.0;
-    for (int i = newindex + 1; i < maxindex; i++) {
+    for (int i = minindex + 1; i < maxindex; i++) {
         umn *= arr[i];
     }
 
