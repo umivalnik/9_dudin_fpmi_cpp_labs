@@ -5,7 +5,7 @@
 
 const int max1 = 100;
 
-void imputingwithcheck(int& n) {
+void InputWithCheck(int& n) {
     setlocale(LC_ALL, "Russian");
 
     std::cout << "Введите количество элементов (менее " << max1 << "): ";
@@ -29,7 +29,7 @@ int main() {
     int n;
     int choice;
 
-    imputingwithcheck(n);
+    InputWithCheck(n);
 
     std::cout << "Выберите способ заполнения:\n";
     std::cout << "1 - ввод с клавиатуры\n";
@@ -63,7 +63,6 @@ int main() {
 
         if (a > b) {
             std::swap(a, b);
-            std::cout << "Границы перепутаны. Меняю местами: a = " << a << ", b = " << b << std::endl;
         }
 
         std::random_device rd;
