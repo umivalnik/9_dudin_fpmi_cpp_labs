@@ -6,20 +6,23 @@
 const int max1 = 100;
 
 void imputingwithcheck(int& n) {
-
     setlocale(LC_ALL, "Russian");
 
-    std::cout << "введите количество элементов менее " << max1 << "): ";
+    std::cout << "Введите количество элементов (менее " << max1 << "): ";
     std::cin >> n;
 
+    if (std::cin.fail()) {
+        std::cout << "Ошибка: введено не число.\n";
+        std::exit(1);
+    }
+
     if (n <= 0 || n > max1) {
-        std::cout << "ошибка размера" << std::endl;
+        std::cout << "Ошибка: размер должен быть от 1 до " << max1 << ".\n";
         std::exit(1);
     }
 }
 
 int main() {
-
     setlocale(LC_ALL, "Russian");
 
     double arr[max1];
@@ -28,21 +31,40 @@ int main() {
 
     imputingwithcheck(n);
 
-    std::cout << "выберите способ заполнения:";
-    std::cout << "1 - ввод с клавиатуры ";
-    std::cout << "2 - случайное заполнение ";
+    std::cout << "Выберите способ заполнения:\n";
+    std::cout << "1 - ввод с клавиатуры\n";
+    std::cout << "2 - случайное заполнение\n";
     std::cin >> choice;
 
+    if (std::cin.fail()) {
+        std::cout << "Ошибка: введено не число.\n";
+        return 1;
+    }
+
     if (choice == 1) {
-        std::cout << "введите элементы массива: ";
+        std::cout << "Введите элементы массива:\n";
         for (int i = 0; i < n; i++) {
             std::cin >> arr[i];
+            if (std::cin.fail()) {
+                std::cout << "Ошибка: введено не число.\n";
+                return 1;
+            }
         }
     }
     else if (choice == 2) {
         double a, b;
-        std::cout << "введите границы [a, b]: ";
+        std::cout << "Введите границы [a, b]: ";
         std::cin >> a >> b;
+
+        if (std::cin.fail()) {
+            std::cout << "Ошибка: введены некорректные значения.\n";
+            return 1;
+        }
+
+        if (a > b) {
+            std::swap(a, b);
+            std::cout << "Границы перепутаны. Меняю местами: a = " << a << ", b = " << b << std::endl;
+        }
 
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -53,7 +75,7 @@ int main() {
         }
     }
     else {
-        std::cout << "ошибка" << std::endl;
+        std::cout << "Ошибка: нужно выбрать 1 или 2.\n";
         return 1;
     }
 
@@ -83,7 +105,7 @@ int main() {
     }
 
     double umn = 1.0;
-    for (int i = minindex + 1; i < maxindex; i++) {
+    for (int i = std::min(minindex, maxindex) + 1; i < std::max(minindex, maxindex); i++) {
         umn *= arr[i];
     }
 
@@ -95,9 +117,9 @@ int main() {
         }
     }
 
-    std::cout << "сумма положительных: " << sum1 << std::endl;
-    std::cout << "произведение: " << umn << std::endl;
-    std::cout << "после сортировки: ";
+    std::cout << "\nСумма положительных: " << sum1 << std::endl;
+    std::cout << "Произведение элементов между min и max: " << umn << std::endl;
+    std::cout << "После сортировки: ";
     for (int i = 0; i < n; i++) {
         std::cout << arr[i] << " ";
     }
