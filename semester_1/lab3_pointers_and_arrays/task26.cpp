@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <random>
 
-void imputingwithcheck(int& n) {
+void InputWithCheck(int& n) {
     setlocale(LC_ALL, "Russian");
 
     std::cout << "Введите количество элементов: ";
@@ -21,7 +21,7 @@ int main() {
     int n;
     int choice;
 
-    imputingwithcheck(n);
+    InputWithCheck(n);
 
     double* arr = new double[n];
 
@@ -115,7 +115,6 @@ int main() {
         indices[i] = i;
     }
 
-    // сортировка по возрастанию
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
             if (temp[j] > temp[j + 1]) {
@@ -150,7 +149,6 @@ int main() {
     }
     std::cout << std::endl;
 
-    // сортировка по модулю
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
             if (std::fabs(arr[j]) > std::fabs(arr[j + 1])) {
