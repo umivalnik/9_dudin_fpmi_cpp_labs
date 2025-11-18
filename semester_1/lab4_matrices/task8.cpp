@@ -1,19 +1,20 @@
 #include <iostream>
 #include <random>
 
-int main() {
-
-    setlocale(LC_ALL, "Russian");
-
-    int n, m    ;
+void InputSize(int& n, int& m) {
     std::cout << "Введите количество строк и столбцов: ";
     std::cin >> n >> m;
+}
 
+int** CreateMatrix(int n, int m) {
     int** matrix = new int* [n];
     for (int i = 0; i < n; i++) {
         matrix[i] = new int[m];
     }
+    return matrix;
+}
 
+void FillMatrix(int** matrix, int n, int m) {
     int choice;
     std::cout << "Выберите способ заполнения \n ручной - 1 \n случайный - 2 ";
     std::cin >> choice;
@@ -41,7 +42,9 @@ int main() {
             }
         }
     }
+}
 
+void PrintMatrix(int** matrix, int n, int m) {
     std::cout << "Матрица:\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
@@ -49,7 +52,9 @@ int main() {
         }
         std::cout << "\n";
     }
+}
 
+int ColumsWithoutT(int** matrix, int n, int m) {
     int t = matrix[0][0];
     int count = 0;
 
@@ -63,7 +68,10 @@ int main() {
         }
         if (!found) count++;
     }
+    return count;
+}
 
+int LongestInARow(int** matrix, int n, int m) {
     int max_series = 0;
     int MaxSeries = 0;
 
@@ -73,7 +81,6 @@ int main() {
 
         for (int j = 1; j < m; j++) {
             if (matrix[i][j] == matrix[i][j - 1]) {
-                count;
                 current_series++;
                 if (current_series > max_in_row) {
                     max_in_row = current_series;
@@ -89,14 +96,24 @@ int main() {
             MaxSeries = i;
         }
     }
+    return MaxSeries;
+}
 
-    std::cout << "Количество столбцов без элемента " << t << ": " << count << "\n";
-    std::cout << "Строка с самой длинной серией одинаковых элементов: " << MaxSeries << "\n";
 
-    for (int i = 0; i < n; i++) {
-        delete[] matrix[i];
-    }
-    delete[] matrix;
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    int n, m;
+    InputSize(n, m);
+    int** matrix = CreateMatrix(n, m);
+    FillMatrix(matrix, n, m);
+    PrintMatrix(matrix, n, m);
+
+    int count = ColumsWithoutT(matrix, n, m);
+    int longestSeriesRow = LongestInARow(matrix, n, m);
+
+    std::cout << "Количество столбцов без элемента " << matrix[0][0] << ": " << count << "\n";
+    std::cout << "Строка с самой длинной серией одинаковых элементов: " << longestSeriesRow << "\n";
 
     return 0;
-
+}
