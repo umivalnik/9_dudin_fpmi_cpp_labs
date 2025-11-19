@@ -4,6 +4,11 @@
 void InputSize(int& n, int& m) {
     std::cout << "Введите количество строк и столбцов: ";
     std::cin >> n >> m;
+
+    if (std::cin.fail()) {
+        std::cout << "Ошибка: введено не натуральное число.\n";
+        std::exit(1);
+    }
 }
 
 int** CreateMatrix(int n, int m) {
@@ -13,6 +18,7 @@ int** CreateMatrix(int n, int m) {
     }
     return matrix;
 }
+
 
 void FillMatrix(int** matrix, int n, int m) {
     int choice;
@@ -26,12 +32,21 @@ void FillMatrix(int** matrix, int n, int m) {
                 std::cin >> matrix[i][j];
             }
         }
+        if (std::cin.fail()) {
+            std::cout << "Ошибка: введено не целое число.\n";
+            std::exit(1);
+        }
+
+
     }
     else {
         double a, b;
         std::cout << "введите границы [a, b]: ";
         std::cin >> a >> b;
-
+        if (std::cin.fail()) {
+            std::cout << "Ошибка: введено не число.\n";
+            std::exit(1);
+        }
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_real_distribution<> dis(a, b);
@@ -41,6 +56,7 @@ void FillMatrix(int** matrix, int n, int m) {
                 matrix[i][j] = dis(gen);
             }
         }
+
     }
 }
 
@@ -113,7 +129,7 @@ int main() {
     int longestSeriesRow = LongestInARow(matrix, n, m);
 
     std::cout << "Количество столбцов без элемента " << matrix[0][0] << ": " << count << "\n";
-    std::cout << "Строка с самой длинной серией одинаковых элементов: " << longestSeriesRow << "\n";
+    std::cout << "Строка с самой длинной серией одинаковых элементов: " << longestSeriesRow + 1 << "\n";
 
     return 0;
 }
