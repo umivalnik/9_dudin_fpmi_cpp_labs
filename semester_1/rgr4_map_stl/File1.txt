@@ -1,0 +1,10 @@
+1001 Ivanov_I.I 3 Math 6 History 4 English 7
+1002 Petrov_P.P 2 Math 9 History 6
+1003 Sidorov_S.S 3 Math 9 History 5 English 8
+1004 Smirnov_A.A 4 Math 2 Physics 8 History 7 Chemistry 8
+1005 Kuznetsova_M.M 3 Math 8 Physics 5 Chemistry 6
+1006 Popov_D.D 2 Physics 4 Chemistry 3
+1007 Voronina_E.E 3 Math 7 History 8 English 9
+1008 Sokolov_V.V 4 Math 9 Physics 7 History 6 English 3
+1009 Lebedeva_K.K 3 Math 5 History 4 English 6
+1010 Fedorov_R.R 2 Physics 9 Chemistry 8
